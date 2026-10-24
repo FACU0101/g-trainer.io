@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1120">
+  <title>G-Trainer | Gestión de entrenamiento</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">G</div>
+        <div><strong>G-TRAINER</strong><span>Gestión personal</span></div>
+      </div>
+      <nav class="navigation" aria-label="Navegación principal">
+        <button class="nav-button active" type="button" data-section="dashboard"><span class="nav-icon">▦</span>Resumen</button>
+        <button class="nav-button" type="button" data-section="clients"><span class="nav-icon">♙</span>Clientes</button>
+        <button class="nav-button" type="button" data-section="routines"><span class="nav-icon">▤</span>Rutinas</button>
+        <button class="nav-button" type="button" data-section="progress"><span class="nav-icon">↗</span>Seguimiento</button>
+        <button class="nav-button" type="button" data-section="payments"><span class="nav-icon">＄</span>Pagos</button>
+        <button class="nav-button" type="button" data-section="backups"><span class="nav-icon">⤓</span>Copias de seguridad</button>
+      </nav>
+      <div class="sidebar-footer"><span class="status-dot"></span> Datos guardados en este dispositivo</div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar"><div><p class="eyebrow">ESPACIO DE TRABAJO</p><h1 id="page-title">Resumen</h1></div><span class="app-tag">G-T</span></header>
+
+      <section class="page-section" id="dashboard">
+        <div class="section-heading"><div><h2>Tu actividad</h2><p>Un vistazo rápido al estado de tus clientes.</p></div><button class="primary-button" type="button" id="btn-new-client">+ Nuevo cliente</button></div>
+        <div class="stats-grid">
+          <article class="stat-card"><span>Clientes registrados</span><strong id="stat-clients">0</strong><p>Personas en tu cartera</p></article>
+          <article class="stat-card"><span>Rutinas activas</span><strong id="stat-routines">0</strong><p>Planes registrados</p></article>
+          <article class="stat-card"><span>Pagos pendientes</span><strong id="stat-pending">0</strong><p>Requieren seguimiento</p></article>
+        </div>
+        <section class="panel"><div class="panel-heading"><div><h2>Actividad reciente</h2><p>Últimos movimientos de la aplicación.</p></div></div><div id="recent-activity" class="activity-list"><p class="muted">Todavía no hay actividad registrada.</p></div></section>
+      </section>
+
+      <section class="page-section" id="clients" hidden>
+        <div class="section-heading"><div><h2>Clientes</h2><p>Administrá perfiles y datos de contacto.</p></div><button class="primary-button" type="button" id="btn-new-client-list">+ Nuevo cliente</button></div>
+        <div class="panel"><div class="panel-heading"><div><h2>Listado de clientes</h2><p>Buscá por nombre, teléfono o correo.</p></div><input id="client-search" type="search" placeholder="Buscar cliente…" aria-label="Buscar cliente"></div><div id="client-list" class="client-list"></div></div>
+      </section>
+
+      <section class="page-section" id="routines" hidden>
+        <div class="section-heading"><div><h2>Rutinas</h2><p>Creá y asigná planes de entrenamiento.</p></div></div>
+        <div class="panel"><div class="panel-heading"><div><h2>Nueva rutina</h2><p>Elegí un cliente y completá los detalles.</p></div></div>
+          <form id="routine-form" class="form-grid">
+            <label class="form-group">Cliente<select id="routine-client" required><option value="">Seleccioná un cliente</option></select></label>
+            <label class="form-group">Nombre de la rutina<input id="routine-name" required maxlength="120" placeholder="Ej. Fuerza - Día A"></label>
+            <label class="form-group">Días / frecuencia<input id="routine-days" required maxlength="120" placeholder="Ej. Lunes, miércoles y viernes"></label>
+            <label class="form-group form-span">Ejercicios y observaciones<textarea id="routine-exercises" rows="4" required placeholder="Ejercicios, series, repeticiones…"></textarea></label>
+            <div class="form-actions form-span"><button class="primary-button" type="submit">Guardar rutina</button></div>
+          </form>
+        </div>
+        <div class="panel"><div class="panel-heading"><div><h2>Rutinas registradas</h2><p>Planes asignados a tus clientes.</p></div></div><div id="routine-list" class="routine-list"></div></div>
+      </section>
+
+      <section class="page-section" id="progress" hidden>
+        <div class="section-heading"><div><h2>Seguimiento físico</h2><p>Registrá el peso y consultá la evolución individual.</p></div></div>
+        <div class="panel"><div class="panel-heading"><div><h2>Seleccionar cliente</h2><p>El historial se muestra por persona.</p></div></div><label class="form-group">Cliente<select id="progress-client" required><option value="">Seleccioná un cliente</option></select></label></div>
+        <div id="progress-empty" class="panel empty-state"><div class="empty-icon">↗</div><h3>Elegí un cliente</h3><p>Seleccioná un cliente para cargar un control o revisar su historial.</p></div>
+        <div id="progress-workspace" hidden>
+          <div class="panel"><div class="panel-heading"><div><h2>Nuevo control</h2><p>Guardá fecha, peso y notas opcionales.</p></div></div>
+            <form id="progress-form" class="form-grid">
+              <label class="form-group">Fecha del control<input id="progress-date" type="date" required></label>
+              <label class="form-group">Peso (kg)<input id="progress-weight" type="number" min="0.1" max="500" step="0.1" required placeholder="Ej. 78,5"></label>
+              <label class="form-group form-span">Observaciones<textarea id="progress-notes" rows="3" maxlength="2000" placeholder="Medidas, rendimiento, comentarios…"></textarea></label>
+              <div class="form-actions form-span"><button class="primary-button" type="submit">Guardar control</button><p id="progress-status" class="status-message" role="status" aria-live="polite"></p></div>
+            </form>
+          </div>
+          <div class="panel"><div class="panel-heading"><div><h2>Resumen de evolución</h2><p>Comparación entre el primer y el último control.</p></div></div><div id="progress-summary" class="progress-summary"></div></div>
+          <div class="panel"><div class="panel-heading progress-history-heading"><div><h2>Historial</h2><p>Controles registrados para este cliente.</p></div><span id="progress-count">0 controles</span></div><div id="progress-list" class="progress-list"></div></div>
+        </div>
+      </section>
+
+      <section class="page-section" id="payments" hidden>
+        <div class="section-heading"><div><h2>Pagos</h2><p>Registrá cuotas y controlá los estados de pago.</p></div></div>
+        <div class="panel"><div class="panel-heading"><div><h2>Registrar pago</h2><p>Podés marcarlo como abonado o pendiente.</p></div></div>
+          <form id="payment-form" class="form-grid">
+            <label class="form-group">Cliente<select id="payment-client" required><option value="">Seleccioná un cliente</option></select></label>
+            <label class="form-group">Período<input id="payment-period" required maxlength="100" placeholder="Ej. Octubre 2026"></label>
+            <label class="form-group">Importe ($)<input id="payment-amount" type="number" min="0" step="0.01" required placeholder="Ej. 25000"></label>
+            <label class="form-group">Fecha de vencimiento<input id="payment-due-date" type="date" required></label>
+            <label class="form-group">Estado<select id="payment-status" required><option value="pending">Pendiente</option><option value="paid">Abonado</option></select></label>
+            <div class="form-actions form-span"><button class="primary-button" type="submit">Guardar pago</button></div>
+          </form>
+        </div>
+        <div class="panel"><div class="panel-heading"><div><h2>Pagos registrados</h2><p>Consultá, actualizá o eliminá registros.</p></div></div><div id="payment-list" class="payment-list"></div></div>
+      </section>
+
+      <section class="page-section" id="backups" hidden>
+        <div class="section-heading"><div><h2>Copias de seguridad</h2><p>Exportá los datos para guardarlos y recuperarlos más adelante.</p></div></div>
+        <div class="backup-grid">
+          <article class="panel backup-card"><div class="backup-icon">⤓</div><h2>Exportar respaldo</h2><p>Descargá un archivo JSON con clientes, rutinas, seguimiento y pagos.</p><button class="primary-button" id="btn-export" type="button">Descargar copia</button></article>
+          <article class="panel backup-card"><div class="backup-icon">⤒</div><h2>Restaurar respaldo</h2><p>Elegí un archivo JSON creado por G-Trainer. La restauración reemplaza los datos actuales de la aplicación.</p><label class="primary-button file-button" for="backup-file">Elegir archivo JSON</label><input id="backup-file" type="file" accept="application/json,.json" hidden></article>
+        </div>
+        <p id="backup-status" class="status-message" role="status" aria-live="polite"></p>
+      </section>
+
+      <footer class="app-footer">G-Trainer · Aplicación local · Los datos permanecen en este navegador.</footer>
+    </main>
+  </div>
+
+  <dialog id="client-dialog" class="client-dialog">
+    <form id="client-form" method="dialog">
+      <div class="dialog-heading"><div><p class="eyebrow">PERFIL</p><h2 id="client-dialog-title">Nuevo cliente</h2></div><button id="btn-close-dialog" class="icon-button" type="button" aria-label="Cerrar">×</button></div>
+      <input id="client-id" type="hidden">
+      <label class="form-group">Nombre completo<input id="client-name" required maxlength="150" autocomplete="name"></label>
+      <label class="form-group">Teléfono<input id="client-phone" maxlength="60" autocomplete="tel"></label>
+      <label class="form-group">Correo electrónico<input id="client-email" type="email" maxlength="180" autocomplete="email"></label>
+      <label class="form-group">Fecha de inicio<input id="client-start-date" type="date"></label>
+      <label class="form-group">Notas<textarea id="client-notes" rows="3" maxlength="2000"></textarea></label>
+      <div class="form-actions"><button id="btn-cancel-client" class="secondary-button" type="button">Cancelar</button><button class="primary-button" type="submit">Guardar cliente</button></div>
+    </form>
+  </dialog>
+  <div id="app-toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,2499 @@
+
+
+/** =========================================================*
+
+*   G-TRAINER - HOJA DE ESTILOS*
+
+*   Archivo: styles.css*
+
+
+
+*   CSS controla la apariencia:*
+
+*   colores, tamaños, espacios, botones y adaptación a pantallas.*
+
+*   ========================================================= **/
+
+
+
+
+
+/** ---------- 1. VARIABLES DE DISEÑO ---------- **/
+
+
+
+/*
+
+*   Definimos los colores una sola vez.*
+
+*   Si después queremos cambiar el azul de la aplicación,*
+
+*   solo tendremos que modificar --accent.*
+
+*/
+
+:root {
+
+    --bg: #0b1120;
+
+    --sidebar: #111827;
+
+    --surface: #172033;
+
+    --surface-hover: #202c42;
+
+    --border: #29364b;
+
+
+
+    --text: #f1f5f9;
+
+    --muted: #94a3b8;
+
+
+
+    --accent: #3b82f6;
+
+    --accent-hover: #2563eb;
+
+    --success: #22c55e;
+
+    --danger: #ef4444;
+
+
+
+    --radius: 16px;
+
+    --radius-small: 10px;
+
+}
+
+
+
+
+
+/** ---------- 2. REGLAS GENERALES ---------- **/
+
+
+
+/*
+
+*   box-sizing: border-box hace que el padding y el borde*
+
+*   estén incluidos dentro del ancho declarado de los elementos.*
+
+*/
+
+* {
+
+    box-sizing: border-box;
+
+}
+
+
+
+/** Suaviza el desplazamiento cuando se usan enlaces internos. **/
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+
+/** Estilos generales de la página. **/
+
+body {
+
+    margin: 0;
+
+    min-width: 320px;
+
+    min-height: 100vh;
+
+
+
+    background: var(--bg);
+
+    color: var(--text);
+
+
+
+    font-family:
+
+        Inter,
+
+        -apple-system,
+
+        BlinkMacSystemFont,
+
+        "Segoe UI",
+
+        sans-serif;
+
+
+
+    font-size: 15px;
+
+    line-height: 1.5;
+
+}
+
+
+
+/** Los controles heredan la tipografía general. **/
+
+button,
+
+input,
+
+textarea {
+
+    font: inherit;
+
+}
+
+
+
+/** Los botones muestran que se pueden pulsar. **/
+
+button,
+
+label {
+
+    -webkit-tap-highlight-color: transparent;
+
+}
+
+
+
+button {
+
+    cursor: pointer;
+
+}
+
+
+
+/** Apariencia de los títulos. **/
+
+h1,
+
+h2,
+
+h3,
+
+h4,
+
+p {
+
+    margin-top: 0;
+
+}
+
+
+
+h1,
+
+h2,
+
+h3,
+
+h4 {
+
+    line-height: 1.25;
+
+}
+
+
+
+p {
+
+    color: var(--muted);
+
+}
+
+
+
+/*
+
+*   hidden debe ocultar una sección aunque tenga una regla*
+
+*   de display definida más abajo en esta hoja de estilos.*
+
+*/
+
+[hidden] {
+
+    display: none !important;
+
+}
+
+
+
+
+
+/** ---------- 3. DISTRIBUCIÓN PRINCIPAL ---------- **/
+
+
+
+/*
+
+*   CSS Grid divide la aplicación en dos columnas:*
+
+*   - una columna para el menú lateral;*
+
+*   - otra para el contenido.*
+
+*/
+
+.app {
+
+    display: grid;
+
+    grid-template-columns: 250px minmax(0, 1fr);
+
+    min-height: 100vh;
+
+}
+
+
+
+
+
+/** ---------- 4. MENÚ LATERAL ---------- **/
+
+
+
+.sidebar {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 34px;
+
+
+
+    padding: 28px 18px;
+
+
+
+    background: var(--sidebar);
+
+    border-right: 1px solid var(--border);
+
+}
+
+
+
+/** Nombre y logotipo. **/
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 0 8px;
+
+}
+
+
+
+.brand-icon {
+
+    display: grid;
+
+    place-items: center;
+
+
+
+    width: 46px;
+
+    height: 46px;
+
+    flex-shrink: 0;
+
+
+
+    border-radius: 14px;
+
+    background: linear-gradient(135deg, #60a5fa, #2563eb);
+
+
+
+    color: white;
+
+    font-size: 26px;
+
+    font-weight: 800;
+
+}
+
+
+
+.brand h1 {
+
+    margin: 0;
+
+    font-size: 19px;
+
+    letter-spacing: -0.5px;
+
+}
+
+
+
+.brand p {
+
+    margin: 4px 0 0;
+
+    font-size: 12px;
+
+}
+
+
+
+/** Lista vertical de botones de navegación. **/
+
+.navigation {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+
+
+/** Apariencia normal de los botones del menú. **/
+
+.nav-button {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+
+
+    width: 100%;
+
+    min-height: 48px;
+
+    padding: 12px 14px;
+
+
+
+    color: var(--muted);
+
+    background: transparent;
+
+
+
+    border: 1px solid transparent;
+
+    border-radius: var(--radius-small);
+
+
+
+    text-align: left;
+
+    transition: background 0.2s, color 0.2s;
+
+}
+
+
+
+/** Efecto cuando el cursor pasa sobre una opción. **/
+
+.nav-button:hover {
+
+    color: var(--text);
+
+    background: var(--surface-hover);
+
+}
+
+
+
+/** Indicamos qué sección está seleccionada. **/
+
+.nav-button.active {
+
+    color: #ffffff;
+
+    background: #1d4ed8;
+
+    border-color: #3b82f6;
+
+}
+
+
+
+/** Iconos sencillos de las opciones. **/
+
+.nav-icon {
+
+    display: inline-grid;
+
+    place-items: center;
+
+
+
+    width: 24px;
+
+    flex-shrink: 0;
+
+
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+}
+
+
+
+/** El estado de almacenamiento queda al final del menú. **/
+
+.sidebar-footer {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+
+
+    margin-top: auto;
+
+    padding: 14px 8px 0;
+
+
+
+    border-top: 1px solid var(--border);
+
+
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+}
+
+
+
+.status-dot {
+
+    width: 8px;
+
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: var(--success);
+
+}
+
+
+
+
+
+/** ---------- 5. CONTENIDO PRINCIPAL ---------- **/
+
+
+
+.main-content {
+
+    min-width: 0;
+
+    padding: 30px;
+
+}
+
+
+
+/** Barra superior con título y perfil. **/
+
+.topbar {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+
+
+    margin-bottom: 30px;
+
+}
+
+
+
+.topbar h2 {
+
+    margin: 0;
+
+    font-size: 28px;
+
+    letter-spacing: -0.7px;
+
+}
+
+
+
+.eyebrow {
+
+    margin-bottom: 8px;
+
+
+
+    color: #60a5fa;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+
+/** Perfil ilustrativo del entrenador. **/
+
+.profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+}
+
+
+
+.profile strong {
+
+    display: block;
+
+    font-size: 13px;
+
+}
+
+
+
+.profile p {
+
+    margin: 3px 0 0;
+
+    font-size: 12px;
+
+}
+
+
+
+.avatar {
+
+    display: grid;
+
+    place-items: center;
+
+
+
+    width: 42px;
+
+    height: 42px;
+
+
+
+    border-radius: 50%;
+
+    background: #263b5e;
+
+    border: 1px solid #426ba6;
+
+
+
+    color: #bfdbfe;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+}
+
+
+
+
+
+/** ---------- 6. BANNER DE BIENVENIDA ---------- **/
+
+
+
+.welcome {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 24px;
+
+
+
+    min-height: 205px;
+
+    margin-bottom: 24px;
+
+    padding: 30px;
+
+
+
+    overflow: hidden;
+
+
+
+    background:
+
+        radial-gradient(
+
+            circle at 90% 15%,
+
+            rgba(59, 130, 246, 0.25),
+
+            transparent 36%
+
+        ),
+
+        linear-gradient(120deg, #182943, #172033);
+
+
+
+    border: 1px solid #2c456b;
+
+    border-radius: var(--radius);
+
+}
+
+
+
+.welcome h3 {
+
+    margin-bottom: 12px;
+
+    font-size: clamp(24px, 3vw, 34px);
+
+    letter-spacing: -1px;
+
+}
+
+
+
+.welcome p:last-child {
+
+    max-width: 470px;
+
+    margin-bottom: 0;
+
+}
+
+
+
+.welcome-symbol {
+
+    display: grid;
+
+    place-items: center;
+
+
+
+    width: 115px;
+
+    height: 115px;
+
+    flex-shrink: 0;
+
+
+
+    border: 2px solid rgba(147, 197, 253, 0.5);
+
+    border-radius: 30px;
+
+
+
+    color: #bfdbfe;
+
+    font-size: 32px;
+
+    font-weight: 900;
+
+
+
+    transform: rotate(5deg);
+
+}
+
+
+
+
+
+/** ---------- 7. TARJETAS DE ESTADÍSTICAS ---------- **/
+
+
+
+.stats-grid {
+
+    display: grid;
+
+
+
+    /** Las tarjetas se acomodan según el espacio disponible. **/
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+
+
+    gap: 18px;
+
+    margin-bottom: 24px;
+
+}
+
+
+
+.stat-card {
+
+    padding: 22px;
+
+
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+}
+
+
+
+.stat-card p {
+
+    margin-bottom: 13px;
+
+    font-size: 13px;
+
+}
+
+
+
+.stat-card strong {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+
+
+    font-size: 34px;
+
+    line-height: 1.1;
+
+}
+
+
+
+.stat-card span {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+}
+
+
+
+
+
+/** ---------- 8. PANELES GENERALES ---------- **/
+
+
+
+.panel {
+
+    min-width: 0;
+
+    padding: 23px;
+
+
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+}
+
+
+
+.panel-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+
+
+    margin-bottom: 18px;
+
+}
+
+
+
+.panel-heading h3 {
+
+    margin-bottom: 6px;
+
+    font-size: 17px;
+
+}
+
+
+
+.panel-heading p {
+
+    margin-bottom: 0;
+
+    font-size: 13px;
+
+}
+
+
+
+
+
+/** ---------- 9. ESTADOS VACÍOS ---------- **/
+
+
+
+/*
+
+*   Estos bloques aparecen cuando todavía no hay información*
+
+*   registrada en un módulo.*
+
+*/
+
+.empty-state {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+
+
+    min-height: 200px;
+
+    padding: 28px 18px;
+
+
+
+    text-align: center;
+
+}
+
+
+
+.empty-icon {
+
+    display: grid;
+
+    place-items: center;
+
+
+
+    width: 54px;
+
+    height: 54px;
+
+    margin-bottom: 14px;
+
+
+
+    border-radius: 16px;
+
+    background: #223553;
+
+
+
+    color: #93c5fd;
+
+    font-size: 25px;
+
+}
+
+
+
+.empty-state h4 {
+
+    margin-bottom: 8px;
+
+    font-size: 16px;
+
+}
+
+
+
+.empty-state p {
+
+    max-width: 400px;
+
+    margin-bottom: 0;
+
+    font-size: 13px;
+
+}
+
+
+
+
+
+/** ---------- 10. ENCABEZADOS DE SECCIONES ---------- **/
+
+
+
+.section-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 18px;
+
+
+
+    margin-bottom: 22px;
+
+}
+
+
+
+.section-heading h3 {
+
+    margin-bottom: 7px;
+
+    font-size: 24px;
+
+}
+
+
+
+.section-heading p {
+
+    margin-bottom: 0;
+
+    font-size: 13px;
+
+}
+
+
+
+
+
+/** ---------- 11. BOTONES ---------- **/
+
+
+
+/** Botón principal: acciones como guardar o crear. **/
+
+.primary-button,
+
+.secondary-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+
+
+    min-height: 44px;
+
+    padding: 11px 17px;
+
+
+
+    border-radius: var(--radius-small);
+
+    font-weight: 700;
+
+    font-size: 13px;
+
+    text-align: center;
+
+    text-decoration: none;
+
+
+
+    transition: background 0.2s, border-color 0.2s;
+
+}
+
+
+
+.primary-button {
+
+    color: #ffffff;
+
+    background: var(--accent);
+
+    border: 1px solid var(--accent);
+
+}
+
+
+
+.primary-button:hover {
+
+    background: var(--accent-hover);
+
+    border-color: var(--accent-hover);
+
+}
+
+
+
+.secondary-button {
+
+    color: var(--text);
+
+    background: #202c42;
+
+    border: 1px solid #3a4962;
+
+}
+
+
+
+.secondary-button:hover {
+
+    background: #2b3a52;
+
+}
+
+
+
+button:disabled {
+
+    cursor: not-allowed;
+
+    opacity: 0.55;
+
+}
+
+
+
+.icon-button {
+
+    display: grid;
+
+    place-items: center;
+
+
+
+    width: 42px;
+
+    height: 42px;
+
+
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+
+
+    background: transparent;
+
+    color: var(--text);
+
+    font-size: 25px;
+
+}
+
+
+
+
+
+/** ---------- 12. BÚSQUEDA Y FORMULARIOS ---------- **/
+
+
+
+.toolbar {
+
+    margin-bottom: 20px;
+
+}
+
+
+
+.toolbar input {
+
+    width: 100%;
+
+    max-width: 480px;
+
+}
+
+
+
+input,
+
+textarea {
+
+    display: block;
+
+    width: 100%;
+
+
+
+    padding: 12px 14px;
+
+
+
+    color: var(--text);
+
+    background: #0f1727;
+
+
+
+    border: 1px solid #344158;
+
+    border-radius: var(--radius-small);
+
+
+
+    outline: none;
+
+}
+
+
+
+/** Resaltamos el control que tiene el foco. **/
+
+input:focus,
+
+textarea:focus {
+
+    border-color: var(--accent);
+
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+
+}
+
+
+
+input::placeholder,
+
+textarea::placeholder {
+
+    color: #718096;
+
+}
+
+
+
+textarea {
+
+    resize: vertical;
+
+}
+
+
+
+label {
+
+    color: #dbe5f3;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+
+
+
+
+/** ---------- 13. LISTA Y TARJETAS DE CLIENTES ---------- **/
+
+
+
+.client-list {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 15px;
+
+}
+
+
+
+.client-card {
+
+    min-width: 0;
+
+    padding: 19px;
+
+
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+
+
+    overflow-wrap: anywhere;
+
+}
+
+
+
+.client-card-header {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    margin-bottom: 14px;
+
+}
+
+
+
+.client-avatar {
+
+    display: grid;
+
+    place-items: center;
+
+
+
+    width: 44px;
+
+    height: 44px;
+
+    flex-shrink: 0;
+
+
+
+    background: #233b60;
+
+    color: #bfdbfe;
+
+    border-radius: 13px;
+
+
+
+    font-weight: 800;
+
+}
+
+
+
+.client-card h4 {
+
+    margin: 2px 0 5px;
+
+    font-size: 16px;
+
+}
+
+
+
+.client-card p {
+
+    margin: 4px 0;
+
+    font-size: 13px;
+
+}
+
+
+
+.client-card .client-notes {
+
+    margin: 13px 0;
+
+    white-space: pre-wrap;
+
+}
+
+
+
+.client-actions {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+
+
+    margin-top: 16px;
+
+    padding-top: 14px;
+
+
+
+    border-top: 1px solid var(--border);
+
+}
+
+
+
+.client-actions button {
+
+    min-height: 38px;
+
+    padding: 8px 11px;
+
+    font-size: 12px;
+
+}
+
+
+
+.danger-button {
+
+    color: #fecaca;
+
+    background: #3a1c29;
+
+    border: 1px solid #713044;
+
+    border-radius: 9px;
+
+}
+
+
+
+.danger-button:hover {
+
+    background: #542234;
+
+}
+
+
+
+.client-date {
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+}
+
+
+
+
+
+/** ---------- 14. VENTANA DE CLIENTE ---------- **/
+
+
+
+.client-dialog {
+
+    width: min(540px, calc(100% - 28px));
+
+    max-width: 540px;
+
+    max-height: calc(100vh - 32px);
+
+
+
+    padding: 0;
+
+
+
+    overflow-y: auto;
+
+
+
+    background: var(--surface);
+
+    color: var(--text);
+
+
+
+    border: 1px solid #3b4c65;
+
+    border-radius: 18px;
+
+}
+
+
+
+.client-dialog::backdrop {
+
+    background: rgba(2, 6, 23, 0.78);
+
+    backdrop-filter: blur(3px);
+
+}
+
+
+
+.dialog-form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 11px;
+
+    padding: 24px;
+
+}
+
+
+
+.dialog-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+
+
+    margin-bottom: 9px;
+
+}
+
+
+
+.dialog-heading h3 {
+
+    margin-bottom: 0;
+
+    font-size: 22px;
+
+}
+
+
+
+.dialog-heading .eyebrow {
+
+    margin-bottom: 7px;
+
+}
+
+
+
+.form-hint {
+
+    margin: 2px 0 0;
+
+    font-size: 11px;
+
+}
+
+
+
+.dialog-actions {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+
+
+    margin-top: 13px;
+
+}
+
+
+
+
+
+/** ---------- 15. COPIAS DE SEGURIDAD ---------- **/
+
+
+
+.backup-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+
+}
+
+
+
+.backup-card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+}
+
+
+
+.backup-icon {
+
+    display: grid;
+
+    place-items: center;
+
+
+
+    width: 48px;
+
+    height: 48px;
+
+
+
+    border-radius: 14px;
+
+    background: #223553;
+
+    color: #93c5fd;
+
+
+
+    font-size: 25px;
+
+}
+
+
+
+.backup-card h3 {
+
+    margin: 0;
+
+    font-size: 17px;
+
+}
+
+
+
+.backup-card p {
+
+    flex: 1;
+
+    margin: 0 0 8px;
+
+    font-size: 13px;
+
+}
+
+
+
+/** La etiqueta de selección se ve y funciona como un botón. **/
+
+.backup-card label {
+
+    cursor: pointer;
+
+}
+
+
+
+.notice {
+
+    margin-top: 20px;
+
+    padding: 16px;
+
+
+
+    background: #2d291d;
+
+    border: 1px solid #66552a;
+
+    border-radius: 12px;
+
+
+
+    color: #f5df9b;
+
+    font-size: 13px;
+
+}
+
+
+
+.status-message {
+
+    min-height: 22px;
+
+    margin-top: 15px;
+
+    font-size: 13px;
+
+}
+
+
+
+
+
+/** ---------- 16. MENSAJES EMERGENTES ---------- **/
+
+
+
+.toast {
+
+    position: fixed;
+
+    right: 22px;
+
+    bottom: 22px;
+
+    z-index: 20;
+
+
+
+    max-width: min(420px, calc(100% - 32px));
+
+    padding: 13px 17px;
+
+
+
+    background: #1e293b;
+
+    border: 1px solid #42516a;
+
+    border-radius: 12px;
+
+
+
+    color: var(--text);
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+
+
+
+    /** Oculto hasta que JavaScript necesite mostrar un mensaje. **/
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(8px);
+
+
+
+    transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+
+}
+
+
+
+.toast.visible {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+
+}
+
+
+
+
+
+/** ---------- 17. PIE DE PÁGINA ---------- **/
+
+
+
+.app-footer {
+
+    padding: 25px 0 5px;
+
+
+
+    color: #64748b;
+
+    font-size: 11px;
+
+    text-align: center;
+
+}
+
+
+
+
+
+/** ---------- 18. ADAPTACIÓN A TABLETS ---------- **/
+
+
+
+/*
+
+*   En pantallas medianas reducimos el ancho del menú*
+
+*   y ajustamos los espacios.*
+
+*/
+
+@media (max-width: 1000px) {
+
+    .app {
+
+        grid-template-columns: 215px minmax(0, 1fr);
+
+    }
+
+
+
+    .main-content {
+
+        padding: 22px;
+
+    }
+
+
+
+    .stats-grid {
+
+        gap: 12px;
+
+    }
+
+
+
+    .stat-card {
+
+        padding: 17px;
+
+    }
+
+
+
+    .client-list {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+
+
+
+/** ---------- 19. ADAPTACIÓN A CELULARES ---------- **/
+
+
+
+/*
+
+*   En pantallas pequeñas, el menú se convierte en una*
+
+*   navegación superior para aprovechar el ancho disponible.*
+
+*/
+
+@media (max-width: 700px) {
+
+    .app {
+
+        display: flex;
+
+        flex-direction: column;
+
+    }
+
+
+
+    .sidebar {
+
+        gap: 18px;
+
+        padding: 17px 14px;
+
+
+
+        border-right: none;
+
+        border-bottom: 1px solid var(--border);
+
+    }
+
+
+
+    .brand {
+
+        padding: 0 3px;
+
+    }
+
+
+
+    .brand-icon {
+
+        width: 40px;
+
+        height: 40px;
+
+        border-radius: 12px;
+
+    }
+
+
+
+    /*
+
+*       Los botones pueden desplazarse horizontalmente*
+
+*       si no caben todos en una fila.*
+
+*    **/
+
+    .navigation {
+
+        flex-direction: row;
+
+        gap: 8px;
+
+
+
+        overflow-x: auto;
+
+        padding-bottom: 4px;
+
+    }
+
+
+
+    .nav-button {
+
+        width: auto;
+
+        min-width: max-content;
+
+        min-height: 44px;
+
+        padding: 10px 13px;
+
+    }
+
+
+
+    .nav-icon {
+
+        width: auto;
+
+    }
+
+
+
+    .sidebar-footer {
+
+        display: none;
+
+    }
+
+
+
+    .main-content {
+
+        padding: 19px 14px;
+
+    }
+
+
+
+    .topbar {
+
+        align-items: flex-start;
+
+        margin-bottom: 22px;
+
+    }
+
+
+
+    .topbar h2 {
+
+        font-size: 24px;
+
+    }
+
+
+
+    .profile {
+
+        gap: 7px;
+
+    }
+
+
+
+    .profile > div:last-child {
+
+        display: none;
+
+    }
+
+
+
+    .welcome {
+
+        min-height: auto;
+
+        padding: 23px 20px;
+
+    }
+
+
+
+    .welcome-symbol {
+
+        width: 62px;
+
+        height: 62px;
+
+        border-radius: 18px;
+
+        font-size: 19px;
+
+    }
+
+
+
+    .welcome h3 {
+
+        font-size: 24px;
+
+    }
+
+
+
+    .stats-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+
+    .stat-card {
+
+        padding: 18px;
+
+    }
+
+
+
+    .stat-card strong {
+
+        font-size: 30px;
+
+    }
+
+
+
+    .section-heading {
+
+        align-items: flex-start;
+
+    }
+
+
+
+    .section-heading h3 {
+
+        font-size: 21px;
+
+    }
+
+
+
+    .backup-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+
+    .panel {
+
+        padding: 17px;
+
+    }
+
+
+
+    .dialog-form {
+
+        padding: 19px;
+
+    }
+
+}
+
+
+
+
+
+/** ---------- 20. MEJORAS PARA PANTALLAS TÁCTILES ---------- **/
+
+
+
+/*
+
+*   En dispositivos táctiles aumentamos ligeramente el área*
+
+*   mínima de pulsación de los botones.*
+
+*/
+
+@media (pointer: coarse) {
+
+    .nav-button {
+
+        min-height: 48px;
+
+    }
+
+
+
+    .primary-button,
+
+    .secondary-button {
+
+        min-height: 46px;
+
+    }
+
+
+
+    .client-actions button {
+
+        min-height: 42px;
+
+    }
+
+}
+
+
+
+/** =========================================================*
+
+*   MÓDULOS DE RUTINAS Y PAGOS*
+
+*   ========================================================= **/
+
+
+
+.module-form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 11px;
+
+    margin-top: 18px;
+
+}
+
+
+
+.module-form button {
+
+    align-self: flex-start;
+
+    margin-top: 8px;
+
+}
+
+
+
+.module-form select {
+
+    width: 100%;
+
+    min-height: 45px;
+
+    padding: 11px 13px;
+
+    color: var(--text);
+
+    background: #0f1727;
+
+    border: 1px solid #344158;
+
+    border-radius: var(--radius-small);
+
+    font: inherit;
+
+}
+
+
+
+.module-form select:focus {
+
+    outline: 2px solid var(--accent);
+
+    outline-offset: 1px;
+
+}
+
+
+
+.module-list-panel {
+
+    margin-top: 20px;
+
+}
+
+
+
+.module-list-panel > h3 {
+
+    margin-bottom: 18px;
+
+    font-size: 17px;
+
+}
+
+
+
+.module-list {
+
+    display: grid;
+
+    gap: 12px;
+
+}
+
+
+
+.module-record {
+
+    padding: 16px;
+
+    background: #101a2b;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    overflow-wrap: anywhere;
+
+}
+
+
+
+.module-record h4 {
+
+    margin-bottom: 8px;
+
+    font-size: 16px;
+
+}
+
+
+
+.module-record p {
+
+    margin: 6px 0;
+
+    font-size: 13px;
+
+}
+
+
+
+.module-record .record-details {
+
+    white-space: pre-wrap;
+
+}
+
+
+
+.module-record .client-tag {
+
+    color: #93c5fd;
+
+    font-weight: 700;
+
+}
+
+
+
+.record-actions {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 13px;
+
+}
+
+
+
+.record-actions button {
+
+    min-height: 40px;
+
+    padding: 8px 12px;
+
+    font-size: 12px;
+
+}
+
+
+
+.payment-status {
+
+    display: inline-block;
+
+    padding: 5px 9px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+}
+
+
+
+.payment-status.pending {
+
+    color: #fde68a;
+
+    background: #3b301a;
+
+}
+
+
+
+.payment-status.paid {
+
+    color: #86efac;
+
+    background: #163523;
+
+}
+
+
+
+@media (max-width: 700px) {
+
+    .module-form button {
+
+        width: 100%;
+
+    }
+
+
+
+    .module-record {
+
+        padding: 14px;
+
+    }
+
+}
+
+
+
+/** Seguimiento físico **/
+
+#progress .form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin-bottom: 16px;
+
+}
+
+
+
+#progress .form-group select,
+
+#progress .form-group input,
+
+#progress .form-group textarea {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+}
+
+
+
+#progress .progress-summary {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+
+    gap: 12px;
+
+}
+
+
+
+#progress .progress-summary-card,
+
+#progress .progress-record {
+
+    padding: 16px;
+
+    border: 1px solid var(--border-color, #303746);
+
+    border-radius: 10px;
+
+    margin-bottom: 12px;
+
+}
+
+
+
+#progress .progress-summary-card span {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--muted-color, #a0a9ba);
+
+    font-size: 13px;
+
+}
+
+
+
+#progress .progress-summary-card strong {
+
+    overflow-wrap: anywhere;
+
+}
+
+
+
+#progress .progress-record-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+}
+
+
+
+#progress .progress-weight {
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    margin-top: 6px;
+
+}
+
+
+
+#progress .progress-notes {
+
+    white-space: pre-wrap;
+
+    overflow-wrap: anywhere;
+
+}
+
+
+
+#progress .progress-history-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+}
+
+
+
+#progress [hidden] {
+
+    display: none !important;
+
+}
